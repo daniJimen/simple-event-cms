@@ -1,32 +1,34 @@
 import 'package:go_router/go_router.dart';
 import 'package:sec/core/models/models.dart';
+import 'package:sec/presentation/ui/screens/on_live/on_live_screen.dart';
 import 'package:sec/presentation/ui/screens/screens.dart';
 
-import '../../presentation/ui/screens/organization/organization_screen.dart';
+import '../../presentation/ui/screens/config/config_screen.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppRouter {
   // Paths
   static const String homePath = '/';
-  static const String adminPath = '/admin';
   static const String eventFormPath = '/events/edit';
-  static const String eventDetailPath = '/event/detail/:eventId';
+  static const String onLivePath = '/events/onLive';
+  static const String eventDetailPath =
+      '/event/detail/:eventId/:location/:onlyOneEvent';
   static const String agendaFormPath = '/agenda/form';
   static const String speakerFormPath = '/speaker/form';
   static const String sponsorFormPath = '/sponsor/form';
-  static const String organizationFormPath = '/organization/form';
+  static const String configFormPath = '/config/form';
 
   // Names
   static const String homeName = 'home';
-  static const String adminName = 'admin';
   static const String eventFormName = 'admin_edit_event';
+  static const String onLiveName = 'on_live_event';
   static const String eventDetailName = 'event_detail';
   static const String agendaFormName = 'agenda_form';
   static const String speakerFormName = 'speaker_form';
   static const String sponsorFormName = 'sponsor_form';
-  static const String organizationFormName = 'organization_form';
+  static const String configFormName = 'config_form';
 
-  static final GoRouter router = GoRouter(
+  static GoRouter router = GoRouter(
     initialLocation: homePath,
     routes: [
       GoRoute(
@@ -39,15 +41,20 @@ class AppRouter {
             name: eventDetailName,
             builder: (context, state) {
               final eventId = state.pathParameters['eventId'] ?? '';
-              return EventDetailScreen(eventId: eventId);
+              final location = state.pathParameters['location'] ?? '';
+              bool onlyOneEvent =
+                  bool.tryParse(
+                    state.pathParameters['onlyOneEvent'].toString(),
+                  ) ??
+                  false;
+              return EventDetailScreen(
+                eventId: eventId,
+                location: location,
+                onlyOneEvent: onlyOneEvent,
+              );
             },
           ),
         ],
-      ),
-      GoRoute(
-        path: adminPath,
-        name: adminName,
-        builder: (context, state) => const AdminLoginScreen(),
       ),
       GoRoute(
         path: eventFormPath,
@@ -57,14 +64,23 @@ class AppRouter {
             : EventFormScreen(eventId: state.extra.toString()),
       ),
       GoRoute(
-        path: organizationFormPath,
-        name: organizationFormName,
-        builder: (context, state) => OrganizationScreen(),
+        path: onLivePath,
+        name: onLiveName,
+        builder: (context, state) =>
+            OnLiveScreen(data: state.extra as OnLiveData),
+      ),
+      GoRoute(
+        path: configFormPath,
+        name: configFormName,
+        builder: (context, state) => ConfigScreen(),
       ),
       GoRoute(
         path: agendaFormPath,
         name: agendaFormName,
         builder: (context, state) {
+          if (state.extra == null) {
+            return AgendaFormScreen();
+          }
           final agendaFormData = state.extra as AgendaFormData;
           return AgendaFormScreen(data: agendaFormData);
         },

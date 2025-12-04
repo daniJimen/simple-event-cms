@@ -33,8 +33,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get loading => 'Caricamento...';
 
   @override
-  String get errorLoadingImage =>
-      'Errore durante il caricamento dell\'immagine';
+  String get errorLoadingImage => 'Errore durante il caricamento d\'immagine';
 
   @override
   String get keynote => 'KEYNOTE';
@@ -58,6 +57,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get sponsors => 'Sponsor';
 
   @override
+  String get nextEvent => 'Prossimo evento...';
+
+  @override
   String get eventInfo => 'Informazioni sull\'Evento';
 
   @override
@@ -65,6 +67,37 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get venue => 'Luogo';
+
+  @override
+  String get visibilityLabel => 'Visibilità';
+
+  @override
+  String get eventIsOpenByDefault =>
+      'L\'evento è aperto per impostazione predefinita';
+
+  @override
+  String get eventIsNotOpenByDefault =>
+      'L\'evento non è aperto per impostazione predefinita';
+
+  @override
+  String get openByDefaultLabel => 'Aperto per impostazione predefinita';
+
+  @override
+  String get eventIsVisible => 'L\'evento è visibile';
+
+  @override
+  String get changeVisibilityTitle => 'Cambia visibilità';
+
+  @override
+  String get changeVisibilityToHidden =>
+      'Questo renderà l\'evento non visibile agli utenti';
+
+  @override
+  String get changeVisibilityToVisible =>
+      'D\'ora in poi, l\'evento sarà visibile a tutti';
+
+  @override
+  String get eventIsHidden => 'L\'evento è nascosto';
 
   @override
   String get description => 'Descrizione';
@@ -89,6 +122,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get changeLanguage => 'Cambia Lingua';
+
+  @override
+  String get deleteEventTitle => 'Elimina evento';
+
+  @override
+  String get deleteEventMessage =>
+      'Sei sicuro di voler eliminare questo evento? \n Questo cancellerà le sessioni associate all\'evento.';
 
   @override
   String get speakerForm => 'Modulo del Relatore';
@@ -125,9 +165,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get linkedinHint => 'Inserisci l\'URL di LinkedIn';
-
-  @override
-  String get websiteHint => 'Inserisci l\'URL del sito web';
 
   @override
   String get saveButton => 'Salva';
@@ -343,7 +380,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get projectNameHint => 'Inserisci il nome del progetto';
 
   @override
-  String get tokenLabel => 'Token (classico con autorizzazioni di scrittura)';
+  String get tokenHintLabel => 'Introduce tu client secret para continuar';
 
   @override
   String get tokenHint => 'Inserisci un token GitHub valido';
@@ -379,7 +416,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get sponsorNameHint => 'Inserisci il nome dello Sponsor';
 
   @override
-  String get sponsorNameValidation => 'Nome';
+  String get sponsorNameValidation => 'Inserisci il nome dello Sponsor';
 
   @override
   String get logoLabel => 'Logo*';
@@ -392,6 +429,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get websiteLabel => 'Web*';
+
+  @override
+  String get websiteHint => 'Inserisci l\'URL del sito web';
 
   @override
   String get websiteValidation => 'Web';
@@ -412,14 +452,114 @@ class AppLocalizationsIt extends AppLocalizations {
   String get updateButton => 'Aggiorna';
 
   @override
-  String get addButton => 'add button';
+  String get addButton => 'Aggiungi';
 
   @override
-  String get addRoomTitle => 'add room';
+  String get addRoomTitle => 'Aggiungi sala';
 
   @override
-  String get roomNameHint => 'Room name';
+  String get roomNameHint => 'Nome della stanza';
 
   @override
   String get formError => 'Ci sono errori nel modulo';
+
+  @override
+  String get confirmLogout => 'Conferma disconnessione';
+
+  @override
+  String get confirmLogoutMessage =>
+      'Sei sicuro di voler effettuare la disconnessione?';
+
+  @override
+  String get cancel => 'Annulla';
+
+  @override
+  String get logout => 'Disconnettersi';
+
+  @override
+  String get enterGithubTokenTitle => 'Token di accesso';
+
+  @override
+  String get availablesEventsTitle => 'Eventi disponibili';
+
+  @override
+  String get availablesEventsText =>
+      'Esplora i prossimi eventi e \n trova qualcosa che ti interessa';
+
+  @override
+  String get config => 'Organizzazione';
+
+  @override
+  String get configName => 'Nome dell\'Organizzazione';
+
+  @override
+  String get configNameHint => 'Inserisci il nome dell\'organizzazione';
+
+  @override
+  String get githubUser => 'Utente GitHub';
+
+  @override
+  String get githubUserHint => 'Inserisci l\'utente GitHub';
+
+  @override
+  String get branch => 'Branch';
+
+  @override
+  String get branchHint => 'Inserisci il branch';
+
+  @override
+  String get eventManager => 'Gestore eventi';
+
+  @override
+  String get addSession => 'Aggiungi Sessione';
+
+  @override
+  String get addSpeaker => 'Aggiungi Relatore';
+
+  @override
+  String get addSponsor => 'Aggiungi Sponsor';
+
+  @override
+  String get retryLater => 'Riprova più tardi';
+
+  @override
+  String get commonError => 'Errore nel recupero dei dati, riprova più tardi';
+
+  @override
+  String get addEvent => 'Aggiungi evento';
+
+  @override
+  String get createSpeaker => 'Crea Relatore';
+
+  @override
+  String get deleteSpeaker => 'Elimina relatore';
+
+  @override
+  String confirmDeleteSpeaker(String speakerName) {
+    return 'Sei sicuro di voler eliminare il relatore $speakerName?';
+  }
+
+  @override
+  String get accept => 'Accettare';
+
+  @override
+  String get deleteSponsorTitle => 'Elimina Sponsor';
+
+  @override
+  String confirmDeleteSponsor(String sponsorName) {
+    return 'Sei sicuro di voler eliminare lo sponsor $sponsorName?';
+  }
+
+  @override
+  String get wrongBranch =>
+      'Il ramo inserito non esiste nel repository. Verifica il nome del ramo e riprova.';
+
+  @override
+  String get onLive => 'On Live';
+
+  @override
+  String get selectSpeaker => 'Seleziona un relatore';
+
+  @override
+  String get onlineNow => 'Online adesso';
 }

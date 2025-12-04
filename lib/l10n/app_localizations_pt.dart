@@ -33,7 +33,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get loading => 'Carregando...';
 
   @override
-  String get errorLoadingImage => 'Erro ao carregar a imagem';
+  String get errorLoadingImage => 'Erro ao carregar la imagem';
 
   @override
   String get keynote => 'KEYNOTE';
@@ -57,6 +57,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get sponsors => 'Patrocinadores';
 
   @override
+  String get nextEvent => 'Próximo evento...';
+
+  @override
   String get eventInfo => 'Informações do Evento';
 
   @override
@@ -64,6 +67,35 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get venue => 'Local';
+
+  @override
+  String get visibilityLabel => 'Visibilidade';
+
+  @override
+  String get eventIsOpenByDefault => 'O evento é aberto por padrão';
+
+  @override
+  String get eventIsNotOpenByDefault => 'O evento não é aberto por padrão';
+
+  @override
+  String get openByDefaultLabel => 'Aberto por padrão';
+
+  @override
+  String get eventIsVisible => 'Evento visível';
+
+  @override
+  String get changeVisibilityTitle => 'Alterar visibilidade';
+
+  @override
+  String get changeVisibilityToHidden =>
+      'Isso tornará o evento não visível para os usuários';
+
+  @override
+  String get changeVisibilityToVisible =>
+      'A partir de agora, o evento será visível para todos';
+
+  @override
+  String get eventIsHidden => 'Evento oculto';
 
   @override
   String get description => 'Descrição';
@@ -88,6 +120,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get changeLanguage => 'Mudar Idioma';
+
+  @override
+  String get deleteEventTitle => 'Excluir Evento';
+
+  @override
+  String get deleteEventMessage =>
+      'Tem certeza de que deseja excluir este evento? \n Isso excluirá as sessões associadas ao evento.';
 
   @override
   String get speakerForm => 'Formulário de Palestrante';
@@ -124,9 +163,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get linkedinHint => 'Insira a URL do LinkedIn';
-
-  @override
-  String get websiteHint => 'Insira a URL do site';
 
   @override
   String get saveButton => 'Salvar';
@@ -340,7 +376,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get projectNameHint => 'Por favor, insira o nome do projeto';
 
   @override
-  String get tokenLabel => 'Token (clássico com permissões de escrita)';
+  String get tokenHintLabel => 'Introduza o seu token do GitHub...';
 
   @override
   String get tokenHint => 'Por favor, insira um token do GitHub válido';
@@ -391,6 +427,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get websiteLabel => 'Web*';
 
   @override
+  String get websiteHint => 'Insira a URL do site';
+
+  @override
   String get websiteValidation => 'Web';
 
   @override
@@ -409,14 +448,113 @@ class AppLocalizationsPt extends AppLocalizations {
   String get updateButton => 'Atualizar';
 
   @override
-  String get addButton => 'add button';
+  String get addButton => 'Adicionar';
 
   @override
-  String get addRoomTitle => 'add room';
+  String get addRoomTitle => 'Adicionar Sala';
 
   @override
-  String get roomNameHint => 'Room name';
+  String get roomNameHint => 'Nome da sala';
 
   @override
   String get formError => 'Há erros no formulário';
+
+  @override
+  String get confirmLogout => 'Confirmar Saída';
+
+  @override
+  String get confirmLogoutMessage => 'Tem a certeza que quer sair?';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get logout => 'Sair';
+
+  @override
+  String get enterGithubTokenTitle => 'Token de Acesso';
+
+  @override
+  String get availablesEventsTitle => 'Eventos Disponíveis';
+
+  @override
+  String get availablesEventsText =>
+      'Explore os próximos eventos e encontre algo que lhe interesse';
+
+  @override
+  String get config => 'Organização';
+
+  @override
+  String get configName => 'Nome da organização';
+
+  @override
+  String get configNameHint => 'Insira o nome da organização';
+
+  @override
+  String get githubUser => 'Usuário do GitHub';
+
+  @override
+  String get githubUserHint => 'Insira o usuário do GitHub';
+
+  @override
+  String get branch => 'Ramo';
+
+  @override
+  String get branchHint => 'Insira o ramo';
+
+  @override
+  String get eventManager => 'Gestor de eventos';
+
+  @override
+  String get addSession => 'Adicionar Sessão';
+
+  @override
+  String get addSpeaker => 'Adicionar Palestrante';
+
+  @override
+  String get addSponsor => 'Adicionar Patrocinador';
+
+  @override
+  String get retryLater => 'Tente novamente mais tarde';
+
+  @override
+  String get commonError => 'Erro ao buscar dados, tente novamente mais tarde';
+
+  @override
+  String get addEvent => 'Adicionar Evento';
+
+  @override
+  String get createSpeaker => 'Criar Palestrante';
+
+  @override
+  String get deleteSpeaker => 'Eliminar Palestrante';
+
+  @override
+  String confirmDeleteSpeaker(String speakerName) {
+    return 'Tem a certeza que quer eliminar o palestrante $speakerName?';
+  }
+
+  @override
+  String get accept => 'Aceitar';
+
+  @override
+  String get deleteSponsorTitle => 'Excluir Patrocinador';
+
+  @override
+  String confirmDeleteSponsor(String sponsorName) {
+    return 'Tem certeza de que deseja excluir o patrocinador $sponsorName?';
+  }
+
+  @override
+  String get wrongBranch =>
+      'O ramo inserido não existe no repositório. Verifique o nome do ramo e tente novamente.';
+
+  @override
+  String get onLive => 'On Live';
+
+  @override
+  String get selectSpeaker => 'Selecione um palestrante';
+
+  @override
+  String get onlineNow => 'Online Agora';
 }

@@ -20,8 +20,36 @@ abstract class SecureInfo {
   /// Throws an exception if an error occurs during writing.
   static Future<void> saveGithubKey(GithubData githubService) async {
     try {
+      var githubDataSaving = await getGithubKey();
+      var githubDataUpdated = GithubData(
+        token: githubService.token ?? githubDataSaving.token,
+        projectName: githubService.projectName ?? githubDataSaving.projectName,
+      );
       // Convert the GithubService object to a JSON string
-      String githubServiceJson = jsonEncode(githubService.toJson());
+      String githubServiceJson = jsonEncode(githubDataUpdated.toJson());
+      // Save the JSON string in secure storage
+      await _storage.write(key: 'github_service', value: githubServiceJson);
+    } catch (e) {
+      // Consider handling the error more specifically or logging it.
+      debugPrint('Error saving GithubService: $e');
+      rethrow; // Rethrow the exception so the caller can handle it.
+    }
+  }
+
+  /// Removes the GitHub token from secure storage.
+  ///
+  /// This is achieved by retrieving the current data, setting the token to null,
+  /// and then saving the updated data back to secure storage.
+  /// Throws an exception if an error occurs during the process.
+  static Future<void> removeGithubKey() async {
+    try {
+      var githubDataSaving = await getGithubKey();
+      var githubDataUpdated = GithubData(
+        token: null,
+        projectName: githubDataSaving.projectName,
+      );
+      // Convert the GithubService object to a JSON string
+      String githubServiceJson = jsonEncode(githubDataUpdated.toJson());
       // Save the JSON string in secure storage
       await _storage.write(key: 'github_service', value: githubServiceJson);
     } catch (e) {

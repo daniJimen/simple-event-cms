@@ -14,7 +14,7 @@ class Speaker extends GitHubModel {
   /// Social media links of the speaker
   final Social social;
 
-  String eventUID;
+  List<String> eventUIDS;
 
   /// Creates a new Speaker instance
   Speaker({
@@ -23,17 +23,41 @@ class Speaker extends GitHubModel {
     required this.bio,
     required this.image,
     required this.social,
-    required this.eventUID,
-    super.pathUrl = PathsGithub.speakerPath,
-    super.updateMessage = PathsGithub.speakerUpdateMessage,
+    required this.eventUIDS,
+    super.pathUrl = PathsGithub.eventPath,
+    super.updateMessage = PathsGithub.eventUpdateMessage,
   });
+
+  Speaker copyWith({
+    String? uid,
+    String? name,
+    String? bio,
+    String? image,
+    Social? social,
+    List<String>? eventUIDS,
+    String? pathUrl,
+    String? updateMessage,
+  }) =>
+      Speaker(
+        uid: uid ?? this.uid,
+        name: name ?? this.name,
+        bio: bio ?? this.bio,
+        image: image ?? this.image,
+        social: social ?? this.social,
+        eventUIDS: eventUIDS ?? this.eventUIDS,
+        pathUrl: pathUrl ?? this.pathUrl,
+        updateMessage: updateMessage ?? this.updateMessage,
+      );
 
   factory Speaker.fromJson(Map<String, dynamic> json) => Speaker(
     uid: json["UID"].toString(),
     name: json["name"],
     bio: json["bio"],
     image: json["image"],
-    eventUID: json["eventUID"],
+    eventUIDS: (json['eventUIDS'] as List<dynamic>)
+        .map<String>((eventUID) => eventUID['UID'].toString())
+        .toSet()
+        .toList(),
     social: Social.fromJson(json["social"]),
   );
 
@@ -44,7 +68,7 @@ class Speaker extends GitHubModel {
     "bio": bio,
     "image": image,
     "social": social.toJson(),
-    "eventUID": eventUID,
+    "eventUIDS": eventUIDS.map((uid) => {'UID': uid}).toList(),
   };
 }
 

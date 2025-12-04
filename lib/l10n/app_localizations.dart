@@ -206,6 +206,12 @@ abstract class AppLocalizations {
   /// **'Sponsors'**
   String get sponsors;
 
+  /// No description provided for @nextEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Next event...'**
+  String get nextEvent;
+
   /// No description provided for @eventInfo.
   ///
   /// In en, this message translates to:
@@ -223,6 +229,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Venue'**
   String get venue;
+
+  /// No description provided for @visibilityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Visibility'**
+  String get visibilityLabel;
+
+  /// No description provided for @eventIsOpenByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Event is open by default'**
+  String get eventIsOpenByDefault;
+
+  /// No description provided for @eventIsNotOpenByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Event is not open by default'**
+  String get eventIsNotOpenByDefault;
+
+  /// No description provided for @openByDefaultLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Open by default'**
+  String get openByDefaultLabel;
+
+  /// No description provided for @eventIsVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'Event is visible'**
+  String get eventIsVisible;
+
+  /// No description provided for @changeVisibilityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Visibility'**
+  String get changeVisibilityTitle;
+
+  /// No description provided for @changeVisibilityToHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'This will make the event not appear to users'**
+  String get changeVisibilityToHidden;
+
+  /// No description provided for @changeVisibilityToVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'From now on the event will be visible to everyone'**
+  String get changeVisibilityToVisible;
+
+  /// No description provided for @eventIsHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Event is hidden'**
+  String get eventIsHidden;
 
   /// No description provided for @description.
   ///
@@ -271,6 +331,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change Language'**
   String get changeLanguage;
+
+  /// No description provided for @deleteEventTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Event'**
+  String get deleteEventTitle;
+
+  /// No description provided for @deleteEventMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this event? \n This will delete the sessions associated with the event.'**
+  String get deleteEventMessage;
 
   /// No description provided for @speakerForm.
   ///
@@ -343,12 +415,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter the LinkedIn URL'**
   String get linkedinHint;
-
-  /// No description provided for @websiteHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the website URL'**
-  String get websiteHint;
 
   /// No description provided for @saveButton.
   ///
@@ -764,11 +830,11 @@ abstract class AppLocalizations {
   /// **'Please enter the project name'**
   String get projectNameHint;
 
-  /// No description provided for @tokenLabel.
+  /// No description provided for @tokenHintLabel.
   ///
   /// In en, this message translates to:
-  /// **'Token (classic with write permissions)'**
-  String get tokenLabel;
+  /// **'Introduce tu client secret para continuar'**
+  String get tokenHintLabel;
 
   /// No description provided for @tokenHint.
   ///
@@ -833,7 +899,7 @@ abstract class AppLocalizations {
   /// No description provided for @sponsorNameValidation.
   ///
   /// In en, this message translates to:
-  /// **'Name'**
+  /// **'Please enter the Sponsor\'s name'**
   String get sponsorNameValidation;
 
   /// No description provided for @logoLabel.
@@ -859,6 +925,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Web*'**
   String get websiteLabel;
+
+  /// No description provided for @websiteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the website URL'**
+  String get websiteHint;
 
   /// No description provided for @websiteValidation.
   ///
@@ -899,13 +971,13 @@ abstract class AppLocalizations {
   /// No description provided for @addButton.
   ///
   /// In en, this message translates to:
-  /// **'add button'**
+  /// **'Add Button'**
   String get addButton;
 
   /// No description provided for @addRoomTitle.
   ///
   /// In en, this message translates to:
-  /// **'add room'**
+  /// **'Add Room'**
   String get addRoomTitle;
 
   /// No description provided for @roomNameHint.
@@ -919,6 +991,192 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'There are errors in the form'**
   String get formError;
+
+  /// No description provided for @confirmLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Logout'**
+  String get confirmLogout;
+
+  /// No description provided for @confirmLogoutMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get confirmLogoutMessage;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @enterGithubTokenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Access Token'**
+  String get enterGithubTokenTitle;
+
+  /// No description provided for @availablesEventsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Events'**
+  String get availablesEventsTitle;
+
+  /// No description provided for @availablesEventsText.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore upcoming events and\nfind something that interests you'**
+  String get availablesEventsText;
+
+  /// No description provided for @config.
+  ///
+  /// In en, this message translates to:
+  /// **'Organization'**
+  String get config;
+
+  /// No description provided for @configName.
+  ///
+  /// In en, this message translates to:
+  /// **'Organization Name'**
+  String get configName;
+
+  /// No description provided for @configNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the config name'**
+  String get configNameHint;
+
+  /// No description provided for @githubUser.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub User'**
+  String get githubUser;
+
+  /// No description provided for @githubUserHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the GitHub user'**
+  String get githubUserHint;
+
+  /// No description provided for @branch.
+  ///
+  /// In en, this message translates to:
+  /// **'Branch'**
+  String get branch;
+
+  /// No description provided for @branchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the branch'**
+  String get branchHint;
+
+  /// No description provided for @eventManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Event manager'**
+  String get eventManager;
+
+  /// No description provided for @addSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Session'**
+  String get addSession;
+
+  /// No description provided for @addSpeaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Speaker'**
+  String get addSpeaker;
+
+  /// No description provided for @addSponsor.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Sponsor'**
+  String get addSponsor;
+
+  /// No description provided for @retryLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again later'**
+  String get retryLater;
+
+  /// No description provided for @commonError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error fetching data, Please retry later'**
+  String get commonError;
+
+  /// No description provided for @addEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Event'**
+  String get addEvent;
+
+  /// No description provided for @createSpeaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Speaker'**
+  String get createSpeaker;
+
+  /// No description provided for @deleteSpeaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete speaker'**
+  String get deleteSpeaker;
+
+  /// Confirm speaker deletion
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete the speaker {speakerName}?'**
+  String confirmDeleteSpeaker(String speakerName);
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @deleteSponsorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Sponsor'**
+  String get deleteSponsorTitle;
+
+  /// Confirm sponsor deletion
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete the sponsor {sponsorName}?'**
+  String confirmDeleteSponsor(String sponsorName);
+
+  /// No description provided for @wrongBranch.
+  ///
+  /// In en, this message translates to:
+  /// **'The entered branch does not exist in the repository. Check the branch name and try again.'**
+  String get wrongBranch;
+
+  /// No description provided for @onLive.
+  ///
+  /// In en, this message translates to:
+  /// **'On Live'**
+  String get onLive;
+
+  /// No description provided for @selectSpeaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a speaker'**
+  String get selectSpeaker;
+
+  /// No description provided for @onlineNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Online Now'**
+  String get onlineNow;
 }
 
 class _AppLocalizationsDelegate

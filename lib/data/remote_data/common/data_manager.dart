@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:sec/core/core.dart';
 import 'package:sec/core/di/dependency_injection.dart';
 import 'package:sec/core/models/models.dart';
+import 'package:sec/data/exceptions/exceptions.dart';
 import 'package:sec/data/remote_data/common/commons_api_services.dart';
 import 'package:sec/data/remote_data/update_data/data_update.dart';
 
 class DataUpdate {
-  static DataLoader dataLoader = getIt<DataLoader>();
-  static DataUpdateInfo dataUpdateInfo = DataUpdateInfo(
+  static DataLoaderManager dataLoader = getIt<DataLoaderManager>();
+  static DataUpdateManager dataUpdateInfo = DataUpdateManager(
     dataCommons: CommonsServicesImp(),
   );
 
   static Future<void> deleteItemAndAssociations(
     String itemId,
-    Type itemType, {
+    String itemType, {
     String? eventUID,
     String agendaDayUidSelected = "",
+    bool overrideData = false,
   }) async {
-    switch (itemType.toString()) {
+    switch (itemType) {
       case "Event":
         await _deleteEvent(itemId, dataLoader, dataUpdateInfo);
         break;
@@ -30,7 +32,12 @@ class DataUpdate {
         );
         break;
       case "Track":
-        await _deleteTrack(itemId, dataLoader, dataUpdateInfo);
+        await _deleteTrack(
+          itemId,
+          dataLoader,
+          dataUpdateInfo,
+          overrideData = overrideData,
+        );
         break;
       case "AgendaDay":
         await _deleteAgendaDay(
@@ -41,7 +48,12 @@ class DataUpdate {
         );
         break;
       case "Speaker":
-        await _deleteSpeaker(itemId, dataLoader, dataUpdateInfo);
+        await _deleteSpeaker(
+          itemId,
+          dataLoader,
+          dataUpdateInfo,
+          eventUID.toString(),
+        );
         break;
       case "Sponsor":
         await _deleteSponsor(itemId, dataUpdateInfo, dataLoader);
@@ -55,58 +67,22 @@ class DataUpdate {
     dynamic item, // Can be Session, Track, AgendaDay, Speaker, Sponsor
     String? parentId, // Can be Session, Track, AgendaDay, Speaker, Sponsor
   ) async {
-    switch (item.runtimeType.toString()) {
-      case "Event":
-        await _addEvent(item as Event, dataLoader, dataUpdateInfo);
-        break;
-      case "Session":
-        await _addSession(
-          item as Session,
-          dataLoader,
-          dataUpdateInfo,
-          parentId,
-        );
-        break;
-      case "Track":
-        await _addTrack(item as Track, dataLoader, dataUpdateInfo, parentId);
-        break;
-      case "AgendaDay":
-        await _addAgendaDay(
-          item as AgendaDay,
-          dataLoader,
-          dataUpdateInfo,
-          parentId,
-        );
-        break;
-      case "Speaker":
-        await _addSpeaker(
-          item as Speaker,
-          dataLoader,
-          dataUpdateInfo,
-          parentId,
-        );
-        break;
-      case "Sponsor":
-        await _addSponsor(
-          item as Sponsor,
-          dataLoader,
-          dataUpdateInfo,
-          parentId,
-        );
-        break;
-
-      case "Organization":
-        await _addOrganization(
-          item as Organization,
-          dataLoader,
-          dataUpdateInfo,
-          parentId,
-        );
-        break;
-      default:
-        throw Exception(
-          "Unsupported item type for addition: ${item.runtimeType}",
-        );
+    if (item is Event) {
+      await _addEvent(item, dataLoader, dataUpdateInfo);
+    } else if (item is Session) {
+      await _addSession(item, dataLoader, dataUpdateInfo, parentId);
+    } else if (item is Track) {
+      await _addTrack(item, dataLoader, dataUpdateInfo, parentId);
+    } else if (item is AgendaDay) {
+      await _addAgendaDay(item, dataLoader, dataUpdateInfo, parentId);
+    } else if (item is Speaker) {
+      await _addSpeaker(item, dataLoader, dataUpdateInfo, parentId);
+    } else if (item is Sponsor) {
+      await _addSponsor(item, dataLoader, dataUpdateInfo, parentId);
+    } else if (item is Config) {
+      await _addOrganization(item, dataLoader, dataUpdateInfo, parentId);
+    } else {
+      throw Exception("Unsupported item type");
     }
   }
 
@@ -117,59 +93,50 @@ class DataUpdate {
   }) async {
     if (items.isEmpty) return;
 
-    String itemType = items.first.runtimeType.toString();
-    switch (itemType) {
-      case "Session":
-        await _addSessions(
-          items.cast<Session>(),
-          dataLoader,
-          dataUpdateInfo,
-          overrideData: overrideData,
-        );
-        break;
-      case "Track":
-        await _addTracks(
-          items.cast<Track>(),
-          dataLoader,
-          dataUpdateInfo,
-          overrideData: overrideData,
-        );
-        break;
-      case "AgendaDay":
-        await _addAgendaDays(
-          items.cast<AgendaDay>(),
-          dataLoader,
-          dataUpdateInfo,
-          overrideData: overrideData,
-        );
-        break;
-      case "Speaker":
-        await _addSpeakers(
-          items.cast<Speaker>(),
-          dataLoader,
-          dataUpdateInfo,
-          overrideData: overrideData,
-        );
-        break;
-      case "Sponsor":
-        await _addSponsors(
-          items.cast<Sponsor>(),
-          dataLoader,
-          dataUpdateInfo,
-          overrideData: overrideData,
-        );
-        break;
-      default:
-        throw Exception(
-          "Unsupported item type for addition: ${items.first.runtimeType}",
-        );
+    if (items.first is Session) {
+      await _addSessions(
+        items.cast<Session>(),
+        dataLoader,
+        dataUpdateInfo,
+        overrideData: overrideData,
+      );
+    } else if (items.first is Track) {
+      await _addTracks(
+        items.cast<Track>(),
+        dataLoader,
+        dataUpdateInfo,
+        overrideData: overrideData,
+      );
+    } else if (items.first is AgendaDay) {
+      await _addAgendaDays(
+        items.cast<AgendaDay>(),
+        dataLoader,
+        dataUpdateInfo,
+        overrideData: overrideData,
+      );
+    } else if (items.first is Speaker) {
+      await _addSpeakers(
+        items.cast<Speaker>(),
+        dataLoader,
+        dataUpdateInfo,
+        overrideData: overrideData,
+      );
+    } else if (items.first is Sponsor) {
+      await _addSponsors(
+        items.cast<Sponsor>(),
+        dataLoader,
+        dataUpdateInfo,
+        overrideData: overrideData,
+      );
+    } else {
+      throw Exception("Unsupported item type list ");
     }
   }
 
   static Future<void> _addEvent(
     Event event,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
   ) async {
     await addItemListAndAssociations(event.tracks);
     await dataUpdateInfo.updateEvent(event);
@@ -178,8 +145,8 @@ class DataUpdate {
 
   static Future<void> _deleteEvent(
     String eventId,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
   ) async {
     await dataUpdateInfo.removeEvent(eventId);
     debugPrint("Event $eventId deleted.");
@@ -187,29 +154,18 @@ class DataUpdate {
 
   static Future<void> _addSession(
     Session session,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
-    String? parentId,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
+    String? trackUID,
   ) async {
-    if (parentId != null && parentId.isNotEmpty) {
-      List<Track> allTracks = await dataLoader.loadAllTracks();
-      for (var track in allTracks) {
-        if (track.uid == parentId) {
-          await _removeSessionFromTrack(track, session.uid);
-          track.sessionUids.toList().add(session.uid);
-          track.resolvedSessions.toList().add(session);
-          await dataUpdateInfo.updateTrack(track);
-        }
-      }
-    }
-    await dataUpdateInfo.updateSession(session);
+    await dataUpdateInfo.updateSession(session, trackUID);
     debugPrint("Session ${session.uid} added.");
   }
 
   static Future<void> _addSessions(
     List<Session> sessions,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo, {
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo, {
     bool overrideData = false,
   }) async {
     List<Session> allSessions = await dataLoader.loadAllSessions();
@@ -222,8 +178,8 @@ class DataUpdate {
 
   static Future<void> _deleteSession(
     String sessionId,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo, {
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo, {
     String agendaDayUidSelected = "",
   }) async {
     List<Track> allTracks = await dataLoader.loadAllTracks();
@@ -258,15 +214,15 @@ class DataUpdate {
       }
     }
 
-    await dataUpdateInfo.updateTracks(updatedTracks);
+    await dataUpdateInfo.updateTracks(updatedTracks, overrideData: true);
     await dataUpdateInfo.removeSession(sessionId);
     debugPrint("Session $sessionId and its associations removed.");
   }
 
   static Future<void> _addTrack(
     Track track,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
     String? parentId,
   ) async {
     if (parentId != null && parentId.isNotEmpty) {
@@ -284,8 +240,8 @@ class DataUpdate {
 
   static Future<void> _addTracks(
     List<Track> tracks,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo, {
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo, {
     bool overrideData = false,
   }) async {
     List<Track> allTracks = await dataLoader.loadAllTracks();
@@ -298,28 +254,40 @@ class DataUpdate {
 
   static Future<void> _deleteTrack(
     String trackId,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
-  ) async {
-    Event event = (await dataLoader.loadEvents()).toList().firstWhere(
-      (event) => event.tracks.any((track) => track.uid == trackId),
-    );
-    event.tracks.removeWhere((track) => track.uid == trackId);
-    await dataUpdateInfo.updateEvent(event);
-    List<AgendaDay> allDays = await dataLoader.loadAllDays();
-    for (var day in allDays) {
-      if (day.trackUids?.contains(trackId) == true) {
-        await _updateAgendaDaysRemovingTrack([day], trackId, dataUpdateInfo);
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo, [
+    bool override = false,
+  ]) async {
+    var allTracks = await dataLoader.loadAllTracks();
+    var track = allTracks.firstWhere((t) => t.uid == trackId);
+    if (track.sessionUids.isEmpty || override) {
+      Event event = (await dataLoader.loadEvents()).toList().firstWhere(
+        (event) => event.tracks.any((track) => track.uid == trackId),
+      );
+      event.tracks.removeWhere((track) => track.uid == trackId);
+      await dataUpdateInfo.updateEvent(event);
+      List<AgendaDay> allDays = await dataLoader.loadAllDays();
+      for (var day in allDays) {
+        if (day.trackUids?.contains(trackId) == true) {
+          await _updateAgendaDaysRemovingTrack([day], trackId, dataUpdateInfo);
+        }
       }
+      await dataUpdateInfo.removeTrack(trackId);
+      debugPrint("Track $trackId and its associations removed.");
+    } else {
+      debugPrint(
+        "Track $trackId not removed because has another sessions associated.",
+      );
+      throw CertainException(
+        "Track ${track.name} not removed because has another sessions associated.",
+      );
     }
-    await dataUpdateInfo.removeTrack(trackId);
-    debugPrint("Track $trackId and its associations removed.");
   }
 
   static Future<void> _addAgendaDay(
     AgendaDay day,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
     String? parentId,
   ) async {
     if (parentId != null && parentId.isNotEmpty) {
@@ -345,8 +313,8 @@ class DataUpdate {
 
   static Future<void> _addAgendaDays(
     List<AgendaDay> days,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo, {
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo, {
     bool overrideData = false,
   }) async {
     var allDays = await dataLoader.loadAllDays();
@@ -375,8 +343,8 @@ class DataUpdate {
 
   static Future<void> _deleteAgendaDay(
     String dayId,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
     String eventId,
   ) async {
     var agendaDays = await dataLoader.loadAllDays();
@@ -396,12 +364,12 @@ class DataUpdate {
 
   static Future<void> _addSpeaker(
     Speaker speaker,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
     String? parentId,
   ) async {
     if (parentId != null && parentId.isNotEmpty) {
-      speaker.eventUID = parentId;
+      speaker.eventUIDS.add(parentId);
     }
 
     // If speakers are associated with events, you might need to update the event.
@@ -411,11 +379,11 @@ class DataUpdate {
 
   static Future<void> _addSpeakers(
     List<Speaker> speakers,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo, {
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo, {
     bool overrideData = false,
   }) async {
-    List<Speaker> allSpeakers = await dataLoader.loadSpeakers();
+    List<Speaker> allSpeakers = await dataLoader.loadSpeakers() ?? [];
     final speakerMap = {for (var s in allSpeakers) s.uid: s};
     for (var speaker in speakers) {
       speakerMap[speaker.uid] = speaker;
@@ -425,18 +393,19 @@ class DataUpdate {
 
   static Future<void> _deleteSpeaker(
     String speakerId,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo,
+    String eventUID,
   ) async {
     // If speakers are linked to events similarly to sessions, that logic would be added here.
-    await dataUpdateInfo.removeSpeaker(speakerId);
+    await dataUpdateInfo.removeSpeaker(speakerId, eventUID);
     debugPrint("Speaker $speakerId and its associations removed.");
   }
 
   static Future<void> _addSponsor(
     Sponsor sponsor,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfom,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfom,
     String? parentId,
   ) async {
     if (parentId != null && parentId.isNotEmpty) {
@@ -448,19 +417,19 @@ class DataUpdate {
   }
 
   static Future<void> _addOrganization(
-    Organization organization,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfom,
+    Config config,
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfom,
     String? parentId,
   ) async {
-    await dataUpdateInfo.updateOrganization(organization);
-    debugPrint("Organization ${organization.organizationName} added.");
+    await dataUpdateInfo.updateOrganization(config);
+    debugPrint("Organization ${config.configName} added.");
   }
 
   static Future<void> _addSponsors(
     List<Sponsor> sponsors,
-    DataLoader dataLoader,
-    DataUpdateInfo dataUpdateInfo, {
+    DataLoaderManager dataLoader,
+    DataUpdateManager dataUpdateInfo, {
     bool overrideData = false,
   }) async {
     List<Sponsor> allSponsors = await dataLoader.loadSponsors();
@@ -473,8 +442,8 @@ class DataUpdate {
 
   static Future<void> _deleteSponsor(
     String sponsorId,
-    DataUpdateInfo dataUpdateInfo,
-    DataLoader dataLoader,
+    DataUpdateManager dataUpdateInfo,
+    DataLoaderManager dataLoader,
   ) async {
     // If sponsors are linked to events similarly to speakers, that logic would be added here.
     await dataUpdateInfo.removeSponsors(sponsorId);
@@ -482,25 +451,10 @@ class DataUpdate {
   }
 }
 
-Future<Track> _removeSessionFromTrack(Track track, String sessionId) async {
-  final sessionUidIndex = track.sessionUids.indexOf(sessionId);
-  if (sessionUidIndex != -1) {
-    track.sessionUids.removeAt(sessionUidIndex);
-  }
-
-  final resolvedSessionIndex = track.resolvedSessions.indexWhere(
-    (session) => session.uid == sessionId,
-  );
-  if (resolvedSessionIndex != -1) {
-    track.resolvedSessions.removeAt(resolvedSessionIndex);
-  }
-  return track;
-}
-
 Future<void> _updateAgendaDaysRemovingTrack(
   List<AgendaDay> days,
   String trackId,
-  DataUpdateInfo dataUpdateInfo, {
+  DataUpdateManager dataUpdateInfo, {
   String sessionId = "",
 }) async {
   if (days.length == 1) {
@@ -531,7 +485,7 @@ Future<void> _updateAgendaDaysRemovingTrack(
 Future<void> _updateAgendaDaysAddingTrack(
   List<AgendaDay> days,
   Track track,
-  DataUpdateInfo dataUpdateInfo,
+  DataUpdateManager dataUpdateInfo,
 ) async {
   if (days.length == 1) {
     await _addTrackFromDay(days.first, track);

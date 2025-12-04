@@ -28,13 +28,9 @@ class FormScreenWrapper extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 32.0),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(125, 9, 59, 109),
-                    Color.fromARGB(255, 169, 208, 247),
-                    Color.fromARGB(255, 9, 59, 109),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                  colors: [Color(0xFFB8E3FF), Color(0xFF38B6FF)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                 ),
               ),
               child: Center(

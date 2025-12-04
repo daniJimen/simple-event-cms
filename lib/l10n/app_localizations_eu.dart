@@ -57,6 +57,9 @@ class AppLocalizationsEu extends AppLocalizations {
   String get sponsors => 'Babesleak';
 
   @override
+  String get nextEvent => 'Hurrengo ekitaldia...';
+
+  @override
   String get eventInfo => 'Gertaeraren Informazioa';
 
   @override
@@ -64,6 +67,35 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get venue => 'Lekua';
+
+  @override
+  String get visibilityLabel => 'Ikusgaitasuna';
+
+  @override
+  String get eventIsOpenByDefault => 'Gertaera lehenespenez irekita dago';
+
+  @override
+  String get eventIsNotOpenByDefault => 'Gertaera ez dago lehenespenez irekita';
+
+  @override
+  String get openByDefaultLabel => 'Lehenespenez irekita';
+
+  @override
+  String get eventIsVisible => 'Gertaera ikusgai dago';
+
+  @override
+  String get changeVisibilityTitle => 'Ikusgaitasuna Aldatu';
+
+  @override
+  String get changeVisibilityToHidden =>
+      'Honek ekitaldia erabiltzaileentzat ikusezin bihurtuko du';
+
+  @override
+  String get changeVisibilityToVisible =>
+      'Hemendik aurrera, ekitaldia guztientzat ikusgai egongo da';
+
+  @override
+  String get eventIsHidden => 'Gertaera ezkutatuta dago';
 
   @override
   String get description => 'Deskribapena';
@@ -88,6 +120,13 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get changeLanguage => 'Hizkuntza aldatu';
+
+  @override
+  String get deleteEventTitle => 'Gertaera ezabatu';
+
+  @override
+  String get deleteEventMessage =>
+      'Ziur zaude gertaera hau ezabatu nahi duzula? \n Honek gertaerarekin lotutako saioak ezabatuko ditu.';
 
   @override
   String get speakerForm => 'Hizlariaren Inprimakia';
@@ -124,9 +163,6 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get linkedinHint => 'Sartu LinkedIn URLa';
-
-  @override
-  String get websiteHint => 'Sartu webgunearen URLa';
 
   @override
   String get saveButton => 'Gorde';
@@ -339,7 +375,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get projectNameHint => 'Mesedez, sartu proiektuaren izena';
 
   @override
-  String get tokenLabel => 'Token-a (klasikoa idazteko baimenekin)';
+  String get tokenHintLabel => 'Introduce tu client secret para continuar';
 
   @override
   String get tokenHint => 'Mesedez, sartu baliozko GitHub token bat';
@@ -375,7 +411,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get sponsorNameHint => 'Sartu babeslearen izena';
 
   @override
-  String get sponsorNameValidation => 'Izena';
+  String get sponsorNameValidation => 'Sartu babeslearen izena';
 
   @override
   String get logoLabel => 'Logoa*';
@@ -388,6 +424,9 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get websiteLabel => 'Webgunea*';
+
+  @override
+  String get websiteHint => 'Sartu webgunearen URLa';
 
   @override
   String get websiteValidation => 'Webgunea';
@@ -408,14 +447,114 @@ class AppLocalizationsEu extends AppLocalizations {
   String get updateButton => 'Eguneratu';
 
   @override
-  String get addButton => 'add button';
+  String get addButton => 'Gehitu';
 
   @override
-  String get addRoomTitle => 'add room';
+  String get addRoomTitle => 'Gela gehitu';
 
   @override
-  String get roomNameHint => 'Room name';
+  String get roomNameHint => 'Gela izena';
 
   @override
   String get formError => 'Formularioan akatsak daude';
+
+  @override
+  String get confirmLogout => 'Berretsi saioa ixtea';
+
+  @override
+  String get confirmLogoutMessage => 'Ziur zaude saioa itxi nahi duzula?';
+
+  @override
+  String get cancel => 'Ezeztatu';
+
+  @override
+  String get logout => 'Saioa itxi';
+
+  @override
+  String get enterGithubTokenTitle => 'Sarbide-tokena';
+
+  @override
+  String get availablesEventsTitle => 'Ekitaldi Eskuragarriak';
+
+  @override
+  String get availablesEventsText =>
+      'Arakatu hurrengo ekitaldiak eta \n aurkitu interesatzen zaizun zerbait';
+
+  @override
+  String get config => 'Antolakuntza';
+
+  @override
+  String get configName => 'Antolakuntzaren izena';
+
+  @override
+  String get configNameHint => 'Sartu antolakuntzaren izena';
+
+  @override
+  String get githubUser => 'GitHub erabiltzailea';
+
+  @override
+  String get githubUserHint => 'Sartu GitHub erabiltzailea';
+
+  @override
+  String get branch => 'Adarra';
+
+  @override
+  String get branchHint => 'Sartu adarra';
+
+  @override
+  String get eventManager => 'Ekitaldi kudeatzailea';
+
+  @override
+  String get addSession => 'Saioa gehitu';
+
+  @override
+  String get addSpeaker => 'Hizlaria gehitu';
+
+  @override
+  String get addSponsor => 'Babeslea gehitu';
+
+  @override
+  String get retryLater => 'Saiatu berriro geroago';
+
+  @override
+  String get commonError =>
+      'Errorea datuak eskuratzean, saiatu berriro geroago mesedez';
+
+  @override
+  String get addEvent => 'Gertaera gehitu';
+
+  @override
+  String get createSpeaker => 'Hizlaria Sortu';
+
+  @override
+  String get deleteSpeaker => 'Hizlaria ezabatu';
+
+  @override
+  String confirmDeleteSpeaker(String speakerName) {
+    return 'Ziur zaude $speakerName hizlaria ezabatu nahi duzula?';
+  }
+
+  @override
+  String get accept => 'Onartu';
+
+  @override
+  String get deleteSponsorTitle => 'Babeslea Ezabatu';
+
+  @override
+  String confirmDeleteSponsor(String sponsorName) {
+    return 'Ziur zaude $sponsorName babeslea ezabatu nahi duzula?';
+  }
+
+  @override
+  String get wrongBranch =>
+      'Sartutako adarra ez da existitzen biltegian. Egiaztatu adarraren izena eta saiatu berriro.';
+
+  @override
+  String get onLive => 'On Live';
+
+  @override
+  String get selectSpeaker => 'Hautatu hizlaria';
+
+  @override
+  String get onlineNow => 'Online Now';
 }

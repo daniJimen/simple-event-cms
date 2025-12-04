@@ -57,6 +57,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get sponsors => 'Patrocinadors';
 
   @override
+  String get nextEvent => 'Proxim esdeveniment...';
+
+  @override
   String get eventInfo => 'Informació de l\'Esdeveniment';
 
   @override
@@ -64,6 +67,35 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get venue => 'Lloc';
+
+  @override
+  String get visibilityLabel => 'Visibilitat';
+
+  @override
+  String get eventIsOpenByDefault => 'Està obert per defecte';
+
+  @override
+  String get eventIsNotOpenByDefault => 'Està tancat per defecte';
+
+  @override
+  String get openByDefaultLabel => 'Obert per defecte';
+
+  @override
+  String get eventIsVisible => 'L\'esdeveniment és visible';
+
+  @override
+  String get changeVisibilityTitle => 'Canviar la visibilitat';
+
+  @override
+  String get changeVisibilityToHidden =>
+      'Això farà que l\'esdeveniment no aparegui als usuaris';
+
+  @override
+  String get changeVisibilityToVisible =>
+      'A partir d\'ara l\'esdeveniment serà visible per a tothom';
+
+  @override
+  String get eventIsHidden => 'L\'esdeveniment està ocult';
 
   @override
   String get description => 'Descripció';
@@ -88,6 +120,13 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get changeLanguage => 'Canviar Idioma';
+
+  @override
+  String get deleteEventTitle => 'Eliminar esdeveniment';
+
+  @override
+  String get deleteEventMessage =>
+      'Estàs segur que vols eliminar aquest esdeveniment? \n Això esborrarà les sessions associades a l\'esdeveniment.';
 
   @override
   String get speakerForm => 'Formulari de Ponent';
@@ -124,9 +163,6 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get linkedinHint => 'Introdueix la URL de LinkedIn';
-
-  @override
-  String get websiteHint => 'Introdueix la URL de la web';
 
   @override
   String get saveButton => 'Desa';
@@ -343,7 +379,7 @@ class AppLocalizationsCa extends AppLocalizations {
   String get projectNameHint => 'Si us plau, introdueix el nom del projecte';
 
   @override
-  String get tokenLabel => 'Token (clàssic amb permisos d\'escriptura)';
+  String get tokenHintLabel => 'Introduce tu client secret para continuar';
 
   @override
   String get tokenHint => 'Si us plau, introdueix un token de GitHub vàlid';
@@ -353,7 +389,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String projectNotFoundError(Object projectName) {
-    return 'El projecte \"$projectName\" no existeix als teus repositoris de GitHub.';
+    return 'El projecte \"$projectName\" no existeix en els teus repositoris de GitHub.';
   }
 
   @override
@@ -379,7 +415,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get sponsorNameHint => 'Introdueix el nom del patrocinador';
 
   @override
-  String get sponsorNameValidation => 'Nom';
+  String get sponsorNameValidation =>
+      'Si us plau, introdueix el nom del patrocinador';
 
   @override
   String get logoLabel => 'Logo*';
@@ -392,6 +429,9 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get websiteLabel => 'Web*';
+
+  @override
+  String get websiteHint => 'Introdueix la URL de la web';
 
   @override
   String get websiteValidation => 'Web';
@@ -412,14 +452,115 @@ class AppLocalizationsCa extends AppLocalizations {
   String get updateButton => 'Actualitzar';
 
   @override
-  String get addButton => 'add button';
+  String get addButton => 'Afegir';
 
   @override
-  String get addRoomTitle => 'add room';
+  String get addRoomTitle => 'Afegir Sala';
 
   @override
-  String get roomNameHint => 'Room name';
+  String get roomNameHint => 'Nom de la sala';
 
   @override
   String get formError => 'Hi ha errors al formulari';
+
+  @override
+  String get confirmLogout => 'Confirmar Tancament de Sessió';
+
+  @override
+  String get confirmLogoutMessage =>
+      'N\'estàs segur, que vols tancar la sessió?';
+
+  @override
+  String get cancel => 'Cancel·lar';
+
+  @override
+  String get logout => 'Tancar Sessió';
+
+  @override
+  String get enterGithubTokenTitle => 'Token d\'accés';
+
+  @override
+  String get availablesEventsTitle => 'Esdeveniments Disponibles';
+
+  @override
+  String get availablesEventsText =>
+      'Explora els pròxims esdeveniments i \n troba alguna cosa que t\'interessi';
+
+  @override
+  String get config => 'Organització';
+
+  @override
+  String get configName => 'Nom de l\'Organització';
+
+  @override
+  String get configNameHint => 'Introdueix el nom de l\'organització';
+
+  @override
+  String get githubUser => 'Usuari de GitHub';
+
+  @override
+  String get githubUserHint => 'Introdueix l\'usuari de GitHub';
+
+  @override
+  String get branch => 'Branca';
+
+  @override
+  String get branchHint => 'Introdueix la branca';
+
+  @override
+  String get eventManager => 'Gestor d\'esdeveniments';
+
+  @override
+  String get addSession => 'Afegir Sessió';
+
+  @override
+  String get addSpeaker => 'Afegir Ponent';
+
+  @override
+  String get addSponsor => 'Afegir Patrocinador';
+
+  @override
+  String get retryLater => 'Torna a intentar-ho més tard';
+
+  @override
+  String get commonError =>
+      'Error en obtenir les dades, si us plau, torna a intentar-ho més tard';
+
+  @override
+  String get addEvent => 'Afegir Esdeveniment';
+
+  @override
+  String get createSpeaker => 'Crear Ponent';
+
+  @override
+  String get deleteSpeaker => 'Eliminar ponent';
+
+  @override
+  String confirmDeleteSpeaker(String speakerName) {
+    return 'N\'estàs segur que vols eliminar el ponent $speakerName?';
+  }
+
+  @override
+  String get accept => 'Acceptar';
+
+  @override
+  String get deleteSponsorTitle => 'Elimina Sponsor';
+
+  @override
+  String confirmDeleteSponsor(String sponsorName) {
+    return 'Sei sicuro di voler eliminare lo sponsor $sponsorName?';
+  }
+
+  @override
+  String get wrongBranch =>
+      'La branca introduïda no existeix al repositori. Verifica el nom de la branca i torna-ho a intentar.';
+
+  @override
+  String get onLive => 'On Live';
+
+  @override
+  String get selectSpeaker => 'Selecciona un ponent';
+
+  @override
+  String get onlineNow => 'En línia ara';
 }

@@ -9,9 +9,9 @@ import 'package:sec/presentation/view_model_common.dart';
 
 abstract class SpeakerViewModel extends ViewModelCommon {
   abstract final ValueNotifier<List<Speaker>> speakers;
-  void addSpeaker(Speaker speaker, String parentId);
-  void editSpeaker(Speaker speaker, String parentId);
-  void removeSpeaker(String id);
+  Future<void> addSpeaker(Speaker speaker, String parentId);
+  Future<void> editSpeaker(Speaker speaker, String parentId);
+  Future<void> removeSpeaker(String id, String eventUID);
 }
 
 class SpeakerViewModelImpl extends SpeakerViewModel {
@@ -34,13 +34,13 @@ class SpeakerViewModelImpl extends SpeakerViewModel {
   ValueNotifier<List<Speaker>> speakers = ValueNotifier([]);
 
   @override
-  void addSpeaker(Speaker speaker, String parentId) {
+  Future<void> addSpeaker(Speaker speaker, String parentId) async {
     speakers.value = [...speakers.value, speaker];
     _speakerUseCase.saveSpeaker(speaker, parentId);
   }
 
   @override
-  void editSpeaker(Speaker speaker, String parentId) {
+  Future<void> editSpeaker(Speaker speaker, String parentId) async {
     final index = speakers.value.indexWhere((s) => s.uid == speaker.uid);
     List<Speaker> currentSpeakers = [...speakers.value];
     if (index != -1) {
@@ -51,13 +51,13 @@ class SpeakerViewModelImpl extends SpeakerViewModel {
   }
 
   @override
-  Future<void> removeSpeaker(String id) async {
-    List<Speaker> currentSpeakers = [...speakers.value];
-    currentSpeakers.removeWhere((s) => s.uid == id);
-    speakers.value = currentSpeakers;
-    final result = await _speakerUseCase.removeSpeaker(id);
+  Future<void> removeSpeaker(String id, String eventUID) async {
+    final result = await _speakerUseCase.removeSpeaker(id, eventUID);
     switch (result) {
       case Ok<void>():
+        List<Speaker> currentSpeakers = [...speakers.value];
+        currentSpeakers.removeWhere((s) => s.uid == id);
+        speakers.value = currentSpeakers;
         viewState.value = ViewState.loadFinished;
       case Error():
         setErrorKey(result.error);
@@ -72,7 +72,7 @@ class SpeakerViewModelImpl extends SpeakerViewModel {
   }
 
   @override
-  void setup([Object? argument]) {
+  Future<void> setup([Object? argument]) async {
     if (argument is String) {
       _loadSpeakers(argument);
     }

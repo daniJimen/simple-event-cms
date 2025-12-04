@@ -8,7 +8,7 @@
   "loadingSponsors": "Caricamento sponsor...",
   "noSponsorsRegistered": "Nessuno sponsor registrato",
   "loading": "Caricamento...",
-  "errorLoadingImage": "Errore durante il caricamento dell'immagine",
+  "errorLoadingImage": "Errore durante il caricamento d'immagine",
   "keynote": "KEYNOTE",
   "talk": "PRESENTAZIONE",
   "workshop": "WORKSHOP",
@@ -20,13 +20,38 @@
   "eventDates": "Date dell'Evento",
   "venue": "Luogo",
   "description": "Descrizione",
+  "addEvent": "Aggiungi evento",
   "close": "Chiudi",
   "twitter": "Twitter/X",
+  "nextEvent": "Prossimo evento...",
+  "visibilityLabel": "Visibilità",
+  "eventIsVisible": "L'evento è visibile",
+  "eventIsHidden": "L'evento è nascosto",
+  "eventIsOpenByDefault": "L'evento è aperto per impostazione predefinita",
+  "eventIsNotOpenByDefault": "L'evento non è aperto per impostazione predefinita",
+  "openByDefaultLabel": "Aperto per impostazione predefinita",
+  "changeVisibilityTitle": "Cambia visibilità",
+  "changeVisibilityToHidden": "Questo renderà l'evento non visibile agli utenti",
+  "changeVisibilityToVisible": "D'ora in poi, l'evento sarà visibile a tutti",
   "linkedin": "LinkedIn",
   "github": "GitHub",
   "website": "Sito Web",
   "openUrl": "Apri URL",
+  "location": "Posizione",
+  "deleteEventTitle": "Elimina evento",
+  "deleteEventMessage": "Sei sicuro di voler eliminare questo evento? \n Questo cancellerà le sessioni associate all'evento.",
   "changeLanguage": "Cambia Lingua",
+  "deleteSpeaker": "Elimina relatore",
+  "confirmDeleteSpeaker": "Sei sicuro di voler eliminare il relatore {speakerName}?",
+  "@confirmDeleteSpeaker": {
+    "description": "Confirm speaker deletion",
+    "placeholders": {
+      "speakerName": {
+        "type": "String"
+      }
+    }
+  },
+  "accept": "Accettare",
   "speakerForm": "Modulo del Relatore",
   "nameLabel": "Nome*",
   "nameErrorHint": "Per favore inserisci il tuo nome",
@@ -39,7 +64,6 @@
   "twitterHint": "Inserisci l'URL di Twitter",
   "githubHint": "Inserisci l'URL di GitHub",
   "linkedinHint": "Inserisci l'URL di LinkedIn",
-  "websiteHint": "Inserisci l'URL del sito web",
   "saveButton": "Salva",
   "errorLoadingData": "Errore durante il caricamento dei dati",
   "errorUnknown": "Errore sconosciuto",
@@ -68,7 +92,6 @@
   "selectTalkTypeError": "Seleziona il tipo di presentazione",
   "descriptionLabel": "Descrizione",
   "talkDescriptionHint": "Inserisci la descrizione della presentazione...",
-  "cancelButton": "Annulla",
   "timeSelectionError": "Seleziona sia l'ora di inizio che quella di fine.",
   "noSessionsFound": "Nessuna sessione trovata",
   "deleteSessionTitle": "Elimina sessione",
@@ -109,7 +132,7 @@
   "loginTitle": "Accesso",
   "projectNameLabel": "Nome del progetto",
   "projectNameHint": "Inserisci il nome del progetto",
-  "tokenLabel": "Token (classico con autorizzazioni di scrittura)",
+  "tokenHintLabel": "Introduce tu client secret para continuar",
   "tokenHint": "Inserisci un token GitHub valido",
   "unknownAuthError": "Errore di autenticazione sconosciuto.",
   "projectNotFoundError": "Il progetto \"{projectName}\" non esiste nei tuoi repository GitHub.",
@@ -120,7 +143,7 @@
   "editingSponsor": "Modifica dello sponsor",
   "creatingSponsor": "Creazione dello sponsor",
   "sponsorNameHint": "Inserisci il nome dello Sponsor",
-  "sponsorNameValidation": "Nome",
+  "sponsorNameValidation": "Inserisci il nome dello Sponsor",
   "logoLabel": "Logo*",
   "logoHint": "Inserisci l'URL del logo",
   "logoValidation": "Logo",
@@ -132,8 +155,55 @@
   "silverSponsor": "Sponsor Argento",
   "bronzeSponsor": "Sponsor Bronzo",
   "updateButton": "Aggiorna",
-  "addButton": "add button",
-  "addRoomTitle": "add room",
-  "roomNameHint": "Room name",
-  "formError": "Ci sono errori nel modulo"
+  "addButton": "Aggiungi",
+  "addRoomTitle": "Aggiungi sala",
+  "roomNameHint": "Nome della stanza",
+  "formError": "Ci sono errori nel modulo",
+  "confirmLogout": "Conferma disconnessione",
+  "confirmLogoutMessage": "Sei sicuro di voler effettuare la disconnessione?",
+  "cancel": "Annulla",
+  "cancelButton": "Annulla",
+  "logout": "Disconnettersi",
+  "enterGithubTokenTitle": "Token di accesso",
+  "availablesEventsTitle": "Eventi disponibili",
+  "availablesEventsText": "Esplora i prossimi eventi e \n trova qualcosa che ti interessa",
+  "config": "Organizzazione",
+  "configName": "Nome dell'Organizzazione",
+  "configNameHint": "Inserisci il nome dell'organizzazione",
+  "githubUser": "Utente GitHub",
+  "githubUserHint": "Inserisci l'utente GitHub",
+  "branch": "Branch",
+  "branchHint": "Inserisci il branch",
+  "eventManager": "Gestore eventi",
+  "addSession": "Aggiungi Sessione",
+  "addSpeaker": "Aggiungi Relatore",
+  "addSponsor": "Aggiungi Sponsor",
+  "retryLater": "Riprova più tardi",
+  "commonError": "Errore nel recupero dei dati, riprova più tardi",
+  "createSpeaker": "Crea Relatore",
+  "deleteSpeaker": "Elimina relatore",
+  "confirmDeleteSpeaker": "Sei sicuro di voler eliminare il relatore {speakerName}?",
+  "@confirmDeleteSpeaker": {
+    "description": "Confirm speaker deletion",
+    "placeholders": {
+      "speakerName": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteSponsorTitle": "Elimina Sponsor",
+  "confirmDeleteSponsor": "Sei sicuro di voler eliminare lo sponsor {sponsorName}?",
+  "@confirmDeleteSponsor": {
+    "description": "Confirm sponsor deletion",
+    "placeholders": {
+      "sponsorName": {
+        "type": "String"
+      }
+    }
+  },
+  "wrongBranch": "Il ramo inserito non esiste nel repository. Verifica il nome del ramo e riprova.",
+  "onLive": "On Live",
+  "onlineNow": "Online adesso",
+  "selectSpeaker": "Seleziona un relatore"
+
 }
